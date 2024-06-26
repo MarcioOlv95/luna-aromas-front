@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="card-body">
+      <h4 *ngIf="productToEdit !== undefined" class="mb-32">{{productToEdit?.name}}</h4>
+      <h4 *ngIf="productToEdit === undefined" class="mb-32">Digite os dados da nova vela</h4>
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="w-33 fs-16 mr-3" appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input matInput type="text" placeholder="Nome" formControlName="name">
+        </mat-form-field>
+  
+        <mat-form-field class="w-33 fs-16 mr-3" appearance="outline">
+          <mat-label>Estoque</mat-label>
+          <input matInput type="number" placeholder="Número do estoque" formControlName="stock">
+        </mat-form-field>
+  
+        <mat-form-field class="w-33 fs-16" appearance="outline">
+            <mat-label>Preço</mat-label>
+            <input matInput type="text" placeholder="Preço no site" formControlName="price">
+        </mat-form-field>
+
+        <mat-form-field class="w-100 fs-16" appearance="outline">
+          <mat-label>Observações</mat-label>
+          <textarea matInput rows="3" placeholder="Observações" formControlName="observations"></textarea>
+        </mat-form-field>
+  
+        <button mat-button class="btn btn-info fw-normal" *ngIf="productToEdit !== undefined" type="submit">Salvar</button>
+        <button mat-button class="btn btn-info fw-normal" *ngIf="productToEdit !== undefined" type="button" (click)="resetProductEdit()">Cancelar</button>
+        <button mat-button class="btn btn-info fw-normal" *ngIf="productToEdit === undefined" type="submit">Incluir</button>
+      </form>   
+      
+      <br>
+
+      <div *ngIf="savedWithSucess" class="alert alert-success alert-text-success d-flex fs-14 align-items-center rounded mb-16" role="alert">
+        <i-feather name="check-circle" class="text-success feather-base me-12"></i-feather>
+        Dados salvos com sucesso!
+      </div>
+
+    </div>
+  </div>
+  
